@@ -15,6 +15,9 @@
         android:theme="@style/Theme.HarryPotterApi"
         tools:targetApi="31">
         <activity
+            android:name=".view.activities.StudentDetail"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.StaffView"
             android:exported="false" />
         <activity

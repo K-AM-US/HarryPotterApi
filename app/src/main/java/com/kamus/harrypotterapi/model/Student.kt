@@ -3,9 +3,6 @@ package com.kamus.harrypotterapi.model
 import com.google.gson.annotations.SerializedName
 
 data class Student(
-    @SerializedName("id")
-    var id: String,
-
     @SerializedName("name")
     var name: String,
 
@@ -16,5 +13,24 @@ data class Student(
     var house: String,
 
     @SerializedName("image")
-    var img: String
+    var img: String,
+
+    @SerializedName("species")
+    var species: String,
+
+    @SerializedName("gender")
+    var gender: String,
+
+    @SerializedName("wand")
+    var wand: Wand,
+
+    @SerializedName("dateOfBirth")
+    var birth: String,
+
+    @SerializedName("patronus")
+    var patronus: String
+)
+data class Wand (
+    @SerializedName("core")
+    var core: String
 )

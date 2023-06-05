@@ -9,7 +9,7 @@ import com.kamus.harrypotterapi.R
 import com.kamus.harrypotterapi.databinding.StudentElementBinding
 import com.kamus.harrypotterapi.model.Student
 
-class StudentsAdapter(private var context: Context, private var students: ArrayList<Student>): RecyclerView.Adapter<StudentsAdapter.ViewHolder>() {
+class StudentsAdapter(private var context: Context, private var students: ArrayList<Student>, private val clickListener: (Student) -> Unit): RecyclerView.Adapter<StudentsAdapter.ViewHolder>() {
 
     class ViewHolder(view: StudentElementBinding): RecyclerView.ViewHolder(view.root){
         val ivStudent = view.ivStudent
@@ -19,7 +19,7 @@ class StudentsAdapter(private var context: Context, private var students: ArrayL
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var binding = StudentElementBinding.inflate(LayoutInflater.from(context))
+        val binding = StudentElementBinding.inflate(LayoutInflater.from(context))
         return ViewHolder(binding)
     }
 
@@ -40,7 +40,7 @@ class StudentsAdapter(private var context: Context, private var students: ArrayL
                 .into(holder.ivStudent)
         }
         holder.itemView.setOnClickListener{
-            // Programar evento click a todo elemento del view holder
+            clickListener(students[position])
         }
     }
 }
