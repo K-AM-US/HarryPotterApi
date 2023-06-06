@@ -26,31 +26,9 @@ class StaffView : AppCompatActivity() {
         binding = ActivityStaffViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val call = RetrofitService.getRetrofit().create(HPApi::class.java)
-            .getCharacters("api/characters/staff")
-
-        call.enqueue(object : Callback<ArrayList<Student>>{
-            override fun onResponse(
-                call: Call<ArrayList<Student>>,
-                response: Response<ArrayList<Student>>
-            ) {
-                binding.nimbusBar.visibility = View.GONE
-
-                Log.d(Constants.LOGTAG, "Respuesta del servidor: ${response.body().toString()} ")
-
-                binding.rvStaff.layoutManager = LinearLayoutManager(this@StaffView)
-                binding.rvStaff.adapter = StaffAdapter(
-                    this@StaffView,
-                    response.body()!!
-                ) { selectedStaff: Student -> staffClick(selectedStaff)}
-                }
-
-            override fun onFailure(call: Call<ArrayList<Student>>, t: Throwable) {
-                binding.nimbusBar.visibility = View.GONE
-                Toast.makeText(this@StaffView, "No hay conexión", Toast.LENGTH_SHORT).show()
-            }
-
-        })
+        binding.errorMessage.visibility = View.GONE
+        binding.buttonError.visibility = View.GONE
+        binding.buttonError.performClick()
     }
     private fun staffClick(student: Student) {
         Toast.makeText(this, "Click en: ${student.name}", Toast.LENGTH_SHORT).show()
@@ -69,5 +47,39 @@ class StaffView : AppCompatActivity() {
         val intent = Intent(this, StaffDetail::class.java)
         intent.putExtras(bundle)
         startActivity(intent)
+    }
+
+    fun reload(view: View){
+
+        binding.errorMessage. visibility = View.GONE
+        binding.buttonError.visibility = View.GONE
+        binding.nimbusBar.visibility = View.VISIBLE
+
+        val call = RetrofitService.getRetrofit().create(HPApi::class.java)
+            .getCharacters("api/characters/staff")
+
+        call.enqueue(object : Callback<ArrayList<Student>>{
+            override fun onResponse(
+                call: Call<ArrayList<Student>>,
+                response: Response<ArrayList<Student>>
+            ) {
+                binding.nimbusBar.visibility = View.GONE
+
+                Log.d(Constants.LOGTAG, "Respuesta del servidor: ${response.body().toString()} ")
+
+                binding.rvStaff.layoutManager = LinearLayoutManager(this@StaffView)
+                binding.rvStaff.adapter = StaffAdapter(
+                    this@StaffView,
+                    response.body()!!
+                ) { selectedStaff: Student -> staffClick(selectedStaff)}
+            }
+
+            override fun onFailure(call: Call<ArrayList<Student>>, t: Throwable) {
+                binding.nimbusBar.visibility = View.GONE
+                binding.errorMessage.visibility = View.VISIBLE
+                binding.buttonError.visibility = View.VISIBLE
+                Toast.makeText(this@StaffView, "No hay conexión", Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 }

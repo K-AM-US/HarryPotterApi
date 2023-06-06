@@ -12,6 +12,7 @@
     <string name="patronus">Patronus: </string>
     <string name="houseLogo">House Logo</string>
 
-    <!-- Students -->
-    <string name="no_actor">No Interpretado</string>
+    <!-- Error -->
+    <string name="errorMessage">Sin conexión. \nIntenta nuevamente</string>
+    <string name="reload">Recargar</string>
 </resources>

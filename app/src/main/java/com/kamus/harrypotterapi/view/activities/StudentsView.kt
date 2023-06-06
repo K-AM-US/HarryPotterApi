@@ -25,6 +25,35 @@ class StudentsView : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStudentsViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.errorMessage.visibility = View.GONE
+        binding.buttonError.visibility = View.GONE
+        binding.buttonError.performClick()
+    }
+
+    private fun studentClick(student: Student) {
+        Toast.makeText(this, "Click en: ${student.name}", Toast.LENGTH_SHORT).show()
+
+        val bundle = Bundle()
+
+        bundle.putString("name", student.name)
+        bundle.putString("house", student.house)
+        bundle.putString("image", student.img)
+        bundle.putString("species", student.species)
+        bundle.putString("gender", student.gender)
+        bundle.putString("wandCore", student.wand.core)
+        bundle.putString("birth", student.birth)
+        bundle.putString("patronus", student.patronus)
+
+        val intent = Intent(this, StudentDetail::class.java)
+        intent.putExtras(bundle)
+        startActivity(intent)
+    }
+
+    fun reload(view: View) {
+
+        binding.errorMessage. visibility = View.GONE
+        binding.buttonError.visibility = View.GONE
+        binding.nimbusBar.visibility = View.VISIBLE
 
         val call = RetrofitService.getRetrofit().create(HPApi::class.java)
             .getCharacters("api/characters/students")
@@ -47,29 +76,11 @@ class StudentsView : AppCompatActivity() {
 
             override fun onFailure(call: Call<ArrayList<Student>>, t: Throwable) {
                 binding.nimbusBar.visibility = View.GONE
+                binding.errorMessage.visibility = View.VISIBLE
+                binding.buttonError.visibility = View.VISIBLE
                 Toast.makeText(this@StudentsView,
                     "No hay conexión", Toast.LENGTH_SHORT).show()
             }
-
         })
-    }
-
-    private fun studentClick(student: Student) {
-        Toast.makeText(this, "Click en: ${student.name}", Toast.LENGTH_SHORT).show()
-
-        val bundle = Bundle()
-
-        bundle.putString("name", student.name)
-        bundle.putString("house", student.house)
-        bundle.putString("image", student.img)
-        bundle.putString("species", student.species)
-        bundle.putString("gender", student.gender)
-        bundle.putString("wandCore", student.wand.core)
-        bundle.putString("birth", student.birth)
-        bundle.putString("patronus", student.patronus)
-
-        val intent = Intent(this, StudentDetail::class.java)
-        intent.putExtras(bundle)
-        startActivity(intent)
     }
 }
