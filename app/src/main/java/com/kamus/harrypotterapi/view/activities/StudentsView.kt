@@ -49,7 +49,6 @@ class StudentsView : AppCompatActivity() {
                 binding.nimbusBar.visibility = View.GONE
                 Toast.makeText(this@StudentsView,
                     "No hay conexión", Toast.LENGTH_SHORT).show()
-
             }
 
         })
