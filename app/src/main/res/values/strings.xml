@@ -1,6 +1,17 @@
 <resources>
     <string name="app_name">HarryPotterApi</string>
 
+    <!-- Menu -->
+    <string name="backgroundDescription">Background</string>
+    <string name="backgroundLogo">Background Logo</string>
+    <string name="studentsButton">Students</string>
+    <string name="staffButton">Staff</string>
+
+    <!-- Detail -->
+    <string name="wandCore">Wand Core: </string>
+    <string name="patronus">Patronus: </string>
+    <string name="houseLogo">House Logo</string>
+
     <!-- Students -->
     <string name="no_actor">No Interpretado</string>
 </resources>

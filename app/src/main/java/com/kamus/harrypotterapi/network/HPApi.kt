@@ -11,9 +11,4 @@ interface HPApi {
     fun getCharacters(
         @Url url: String? = null
     ):Call<ArrayList<Student>>
-
-    @GET("api/character/{id}")
-    fun getStudentByID(
-        @Path("id") id: String?
-    )// Falta lo que regresa
 }

@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.StudentDetail">
-
+    tools:context=".view.activities.StaffDetail">
 
     <ImageView
         android:id="@+id/ivBackground"
@@ -217,6 +216,4 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline8"
         app:layout_constraintStart_toStartOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="@+id/guideline15" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

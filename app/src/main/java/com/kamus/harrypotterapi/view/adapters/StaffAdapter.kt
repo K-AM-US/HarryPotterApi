@@ -6,45 +6,45 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.kamus.harrypotterapi.R
-import com.kamus.harrypotterapi.databinding.StudentElementBinding
+import com.kamus.harrypotterapi.databinding.StaffElementBinding
 import com.kamus.harrypotterapi.model.Student
 
-class StudentsAdapter(
+class StaffAdapter(
     private var context: Context,
-    private var students: ArrayList<Student>,
+    private var staff: ArrayList<Student>,
     private val clickListener: (Student) -> Unit
-) : RecyclerView.Adapter<StudentsAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<StaffAdapter.ViewHolder>() {
 
-    class ViewHolder(view: StudentElementBinding) : RecyclerView.ViewHolder(view.root) {
-        val ivStudent = view.ivStudent
+    class ViewHolder(view: StaffElementBinding) : RecyclerView.ViewHolder(view.root) {
+        val ivStaff = view.ivStaff
         val tvName = view.name
         val tvActor = view.actor
         val tvHouse = view.house
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = StudentElementBinding.inflate(LayoutInflater.from(context))
+        val binding = StaffElementBinding.inflate(LayoutInflater.from(context))
         return ViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = students.size
+    override fun getItemCount(): Int = staff.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.tvName.text = students[position].name
-        holder.tvActor.text = students[position].actor
-        holder.tvHouse.text = students[position].house
+        holder.tvName.text = staff[position].name
+        holder.tvActor.text = staff[position].actor
+        holder.tvHouse.text = staff[position].house
 
-        if (students[position].img == "") {
+        if (staff[position].img == "") {
             Glide.with(context)
                 .load(R.drawable.avatarhp)
-                .into(holder.ivStudent)
+                .into(holder.ivStaff)
         } else {
             Glide.with(context)
-                .load(students[position].img)
-                .into(holder.ivStudent)
+                .load(staff[position].img)
+                .into(holder.ivStaff)
         }
         holder.itemView.setOnClickListener {
-            clickListener(students[position])
+            clickListener(staff[position])
         }
     }
 }
