@@ -15,4 +15,5 @@
     <!-- Error -->
     <string name="errorMessage">Sin conexión. \nIntenta nuevamente</string>
     <string name="reload">Recargar</string>
+    <string name="unknown">Desconocido</string>
 </resources>

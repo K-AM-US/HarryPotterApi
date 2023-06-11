@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kamus.harrypotterapi.R
 import com.kamus.harrypotterapi.databinding.ActivityStudentsViewBinding
 import com.kamus.harrypotterapi.model.Student
 import com.kamus.harrypotterapi.network.HPApi
@@ -31,7 +32,7 @@ class StudentsView : AppCompatActivity() {
     }
 
     private fun studentClick(student: Student) {
-        Toast.makeText(this, "Click en: ${student.name}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Click en: ${student.wand.core}", Toast.LENGTH_SHORT).show()
 
         val bundle = Bundle()
 

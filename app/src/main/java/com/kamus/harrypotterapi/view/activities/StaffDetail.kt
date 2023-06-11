@@ -20,13 +20,25 @@ class StaffDetail : AppCompatActivity() {
         val bundle = intent.extras
 
         if (bundle != null) {
-            binding.name.text = bundle.getString("name", "Sin información")
-            binding.birth.text = bundle.getString("birth", "Sin información")
-            binding.species.text = bundle.getString("species", "Sin información")
-            binding.wandCore.text = bundle.getString("wandCore", "Sin información")
-            binding.patronus.text = bundle.getString("patronus", "Sin información")
-            binding.gender.text = bundle.getString("gender", "Sin información")
+            binding.name.text = bundle.getString("name", "")
+            binding.birth.text = bundle.getString("birth", "")
+            binding.species.text = bundle.getString("species", "")
+            binding.wandCore.text = bundle.getString("wandCore", "")
+            binding.patronus.text = bundle.getString("patronus", "")
+            binding.gender.text = bundle.getString("gender", "")
 
+            if(binding.name.text == "")
+                binding.name.text = getString(R.string.unknown)
+            if(binding.species.text == "")
+                binding.species.text = getString(R.string.unknown)
+            if(binding.gender.text == "")
+                binding.gender.text = getString(R.string.unknown)
+            if(binding.wandCore.text == "")
+                binding.wandCore.text = getString(R.string.unknown)
+            if(binding.birth.text == "")
+                binding.birth.text = getString(R.string.unknown)
+            if(binding.patronus.text == "")
+                binding.patronus.text = getString(R.string.unknown)
 
             if(bundle.getString("image", "") == ""){
                 Glide.with(this)
